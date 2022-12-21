@@ -3,7 +3,10 @@ package principal;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.Format;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -29,6 +32,7 @@ public class Program {
             while (line != null) {
                 String[] prods = line.split(",");
                 listProds.add(new Produtos(prods[0], Double.parseDouble(prods[1])));
+                line = br.readLine();
             }
 
             Double media = listProds.stream()
@@ -42,6 +46,8 @@ public class Program {
                     .map(p -> p.getName()).sorted(comp.reversed())
                     .collect(Collectors.toList());
         
+            System.out.println("Media: " + String.format("%.2f", media));
+            name.forEach(System.out::println);
             
 
         } catch (IOException e) {
